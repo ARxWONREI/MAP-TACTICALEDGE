@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGMI Map Guide & Strategy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay-bg"></div>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-crosshairs"></i>
+            <h1>TACTICAL<span>EDGE</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="active" data-map="erangel">ERANGEL</li>
+                <li data-map="miramar">MIRAMAR</li>
+                <li data-map="sanhok">SANHOK</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="sidebar">
+            <div class="map-info">
+                <h2 id="map-title">ERANGEL</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <span class="label">Size</span>
+                        <span class="value" id="map-size">8x8 km</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="label">Biome</span>
+                        <span class="value" id="map-biome">Grassland</span>
+                    </div>
+                </div>
+                
+                <div class="options-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> Map Options</h3>
+                    <ul class="options-list" id="options-list">
+                        <li data-option="vehicle_spawn">Vehicle Spawn</li>
+                        <li data-option="rotation">Rotation</li>
+                    </ul>
+                </div>
+
+                <div class="rotation-tips-section">
+                    <h3 id="strategy-title"><i class="fa-solid fa-route"></i> General Strategy</h3>
+                    <div id="drawing-tools" style="display: none; margin-bottom: 10px;">
+                        <button id="clear-path" class="tool-btn">Clear Path</button>
+                    </div>
+                    <p id="rotation-text">Prioritize securing vehicles early...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-container">
+            <div class="zoom-controls">
+                <button id="zoom-in" class="zoom-btn" title="Zoom In"><i class="fa-solid fa-plus"></i></button>
+                <button id="zoom-out" class="zoom-btn" title="Zoom Out"><i class="fa-solid fa-minus"></i></button>
+                <button id="zoom-reset" class="zoom-btn" title="Reset Zoom"><i class="fa-solid fa-compress"></i></button>
+            </div>
+            <div class="map-view-wrapper" id="map-view-wrapper">
+                <div class="map-layer" id="map-image-layer"></div>
+                <svg id="rotation-svg-layer" class="rotation-svg-layer" viewBox="0 0 1000 1000" preserveAspectRatio="none" style="display: none;"></svg>
+            </div>
+        </section>
+    </main>
+
+    <section class="video-recommendations">
+        <h2><i class="fa-brands fa-youtube" style="color: #ff0000; margin-right: 5px;"></i> Pro Tips & Guides</h2>
+        <div class="video-carousel-wrapper">
+            <div class="video-carousel">
+                <!-- ORIGINAL SET -->
+                <a href="https://www.youtube.com/watch?v=UsqUuVrAtNY" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/UsqUuVrAtNY/mqdefault.jpg" alt="Close Range Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Mastering Close Range Combat Fights</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.youtube.com/watch?v=P3kbfTeCLE0" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/P3kbfTeCLE0/mqdefault.jpg" alt="Sound Sense Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Master Sound Sense & Footsteps</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=BuWajiNyH1I" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/BuWajiNyH1I/mqdefault.jpg" alt="Gamesense Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Mastering Gamesense and IQ Plays</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=zk9bsrYpxR0" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/zk9bsrYpxR0/mqdefault.jpg" alt="Tracing Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Perfect Vehicle Tracing & Tracking</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=zs09r-LaUPA" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/zs09r-LaUPA/mqdefault.jpg" alt="Sensitivity Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Make Your Own Perfect Sensitivity</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <!-- DUPLICATE SET FOR INFINITE LOOP -->
+                <a href="https://www.youtube.com/watch?v=UsqUuVrAtNY" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/UsqUuVrAtNY/mqdefault.jpg" alt="Close Range Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Mastering Close Range Combat Fights</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.youtube.com/watch?v=P3kbfTeCLE0" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/P3kbfTeCLE0/mqdefault.jpg" alt="Sound Sense Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Master Sound Sense & Footsteps</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=BuWajiNyH1I" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/BuWajiNyH1I/mqdefault.jpg" alt="Gamesense Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Mastering Gamesense and IQ Plays</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=zk9bsrYpxR0" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/zk9bsrYpxR0/mqdefault.jpg" alt="Tracing Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Perfect Vehicle Tracing & Tracking</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=zs09r-LaUPA" target="_blank" class="video-card">
+                    <div class="thumbnail">
+                        <i class="fa-solid fa-circle-play play-icon"></i>
+                        <img src="https://img.youtube.com/vi/zs09r-LaUPA/mqdefault.jpg" alt="Sensitivity Guide">
+                        <span class="duration">Watch</span>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Make Your Own Perfect Sensitivity</h4>
+                        <p>Featured Video • BGMI Tips</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
