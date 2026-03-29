@@ -212,4 +212,75 @@ function applyTransform() {
     mapViewWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// --- Comments Logic (LocalStorage) ---
+const commentForm = document.getElementById('comment-form');
+const commentName = document.getElementById('comment-name');
+const commentMessage = document.getElementById('comment-message');
+const commentsList = document.getElementById('comments-list');
+
+function loadComments() {
+    if (!commentsList) return;
+    const comments = JSON.parse(localStorage.getItem('bgmi_comments')) || [];
+    commentsList.innerHTML = '';
+    
+    if (comments.length === 0) {
+        commentsList.innerHTML = '<p style="color: var(--text-secondary); font-style: italic;">No comments yet. Be the first to share your strategy!</p>';
+        return;
+    }
+
+    comments.forEach(comment => {
+        const commentEl = document.createElement('div');
+        commentEl.className = 'comment-item';
+        commentEl.innerHTML = `
+            <div class="comment-header">
+                <span class="comment-name"><i class="fa-solid fa-user-astronaut"></i> ${escapeHTML(comment.name)}</span>
+                <span class="comment-date">${comment.date}</span>
+            </div>
+            <div class="comment-text">${escapeHTML(comment.text)}</div>
+        `;
+        commentsList.appendChild(commentEl);
+    });
+}
+
+function saveComment(e) {
+    e.preventDefault();
+    const name = commentName.value.trim();
+    const text = commentMessage.value.trim();
+    
+    if (!name || !text) return;
+
+    const newComment = {
+        name,
+        text,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+
+    const comments = JSON.parse(localStorage.getItem('bgmi_comments')) || [];
+    comments.unshift(newComment); // Add to beginning
+    localStorage.setItem('bgmi_comments', JSON.stringify(comments));
+
+    commentName.value = '';
+    commentMessage.value = '';
+    loadComments();
+}
+
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag])
+    );
+}
+
+if (commentForm) {
+    commentForm.addEventListener('submit', saveComment);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    loadComments();
+});

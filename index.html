@@ -199,6 +199,20 @@
         </div>
     </section>
 
+    <section class="comments-feedback" id="comments-section">
+        <h2><i class="fa-solid fa-comments" style="color: #ffaa00; margin-right: 5px;"></i> Player Feedback & Comments</h2>
+        <div class="comments-container">
+            <form id="comment-form" class="comment-form">
+                <input type="text" id="comment-name" placeholder="Your Name" required>
+                <textarea id="comment-message" placeholder="Share your strategy or feedback..." rows="4" required></textarea>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Post Comment</button>
+            </form>
+            <div class="comments-list" id="comments-list">
+                <!-- Comments will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
